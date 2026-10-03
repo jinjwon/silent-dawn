@@ -1,0 +1,3 @@
+let context,enabled=false;
+export function enableAudio(value){enabled=value;if(value){context??=new (window.AudioContext||window.webkitAudioContext)();context.resume().catch(()=>{});}}
+export function chime(kind='tap'){if(!enabled||!context)return;const now=context.currentTime,notes=kind==='heal'?[523,659,784]:kind==='hit'?[140,95]:kind==='next'?[392,523]:[660];notes.forEach((hz,i)=>{let o=context.createOscillator(),g=context.createGain();o.type=kind==='hit'?'triangle':'sine';o.frequency.setValueAtTime(hz,now+i*.045);g.gain.setValueAtTime(0,now+i*.045);g.gain.linearRampToValueAtTime(.055,now+i*.045+.012);g.gain.exponentialRampToValueAtTime(.001,now+i*.045+.17);o.connect(g);g.connect(context.destination);o.start(now+i*.045);o.stop(now+i*.045+.2);});}

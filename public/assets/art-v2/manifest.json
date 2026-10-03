@@ -1,0 +1,248 @@
+{
+  "version": 2,
+  "tool": "sharp",
+  "assets": {
+    "seria-front.png": {
+      "width": 64,
+      "height": 80,
+      "source": "characters.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 627,
+        "height": 627
+      }
+    },
+    "seria-back.png": {
+      "width": 64,
+      "height": 80,
+      "source": "characters.png",
+      "crop": {
+        "left": 627,
+        "top": 0,
+        "width": 627,
+        "height": 627
+      }
+    },
+    "wanderer-front.png": {
+      "width": 64,
+      "height": 80,
+      "source": "characters.png",
+      "crop": {
+        "left": 0,
+        "top": 627,
+        "width": 627,
+        "height": 627
+      }
+    },
+    "wanderer-back.png": {
+      "width": 64,
+      "height": 80,
+      "source": "characters.png",
+      "crop": {
+        "left": 627,
+        "top": 627,
+        "width": 627,
+        "height": 627
+      }
+    },
+    "cottage.png": {
+      "width": 144,
+      "height": 184,
+      "source": "environment.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 454,
+        "height": 574
+      }
+    },
+    "pine.png": {
+      "width": 112,
+      "height": 192,
+      "source": "environment.png",
+      "crop": {
+        "left": 454,
+        "top": 0,
+        "width": 354,
+        "height": 631
+      }
+    },
+    "oak.png": {
+      "width": 160,
+      "height": 192,
+      "source": "environment.png",
+      "crop": {
+        "left": 808,
+        "top": 0,
+        "width": 446,
+        "height": 633
+      }
+    },
+    "chapel.png": {
+      "width": 192,
+      "height": 280,
+      "source": "environment.png",
+      "crop": {
+        "left": 0,
+        "top": 574,
+        "width": 452,
+        "height": 663
+      }
+    },
+    "well.png": {
+      "width": 96,
+      "height": 124,
+      "source": "environment.png",
+      "crop": {
+        "left": 454,
+        "top": 724,
+        "width": 343,
+        "height": 504
+      }
+    },
+    "market.png": {
+      "width": 160,
+      "height": 160,
+      "source": "environment.png",
+      "crop": {
+        "left": 801,
+        "top": 750,
+        "width": 453,
+        "height": 479
+      }
+    },
+    "guardian.png": {
+      "width": 96,
+      "height": 112,
+      "source": "support.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 630,
+        "height": 670
+      }
+    },
+    "shadowbeast.png": {
+      "width": 64,
+      "height": 72,
+      "source": "support.png",
+      "crop": {
+        "left": 630,
+        "top": 0,
+        "width": 569,
+        "height": 662
+      }
+    },
+    "villager-herbalist.png": {
+      "width": 48,
+      "height": 64,
+      "source": "support.png",
+      "crop": {
+        "left": 0,
+        "top": 670,
+        "width": 599,
+        "height": 642
+      }
+    },
+    "villager-elder.png": {
+      "width": 48,
+      "height": 64,
+      "source": "support.png",
+      "crop": {
+        "left": 599,
+        "top": 665,
+        "width": 600,
+        "height": 647
+      }
+    },
+    "wanderer-windup.png": {
+      "width": 96,
+      "height": 80,
+      "source": "combat.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 425,
+        "height": 436
+      }
+    },
+    "wanderer-slash.png": {
+      "width": 96,
+      "height": 80,
+      "source": "combat.png",
+      "crop": {
+        "left": 425,
+        "top": 0,
+        "width": 559,
+        "height": 436
+      }
+    },
+    "wanderer-heavy.png": {
+      "width": 96,
+      "height": 80,
+      "source": "combat.png",
+      "crop": {
+        "left": 984,
+        "top": 0,
+        "width": 345,
+        "height": 436
+      }
+    },
+    "wanderer-dodge.png": {
+      "width": 96,
+      "height": 80,
+      "source": "combat.png",
+      "crop": {
+        "left": 1329,
+        "top": 0,
+        "width": 445,
+        "height": 436
+      }
+    },
+    "seria-windup.png": {
+      "width": 96,
+      "height": 80,
+      "source": "combat.png",
+      "crop": {
+        "left": 0,
+        "top": 436,
+        "width": 430,
+        "height": 451
+      }
+    },
+    "seria-slash.png": {
+      "width": 96,
+      "height": 80,
+      "source": "combat.png",
+      "crop": {
+        "left": 430,
+        "top": 436,
+        "width": 514,
+        "height": 451
+      }
+    },
+    "seria-cast.png": {
+      "width": 96,
+      "height": 80,
+      "source": "combat.png",
+      "crop": {
+        "left": 944,
+        "top": 436,
+        "width": 376,
+        "height": 451
+      }
+    },
+    "seria-dodge.png": {
+      "width": 96,
+      "height": 80,
+      "source": "combat.png",
+      "crop": {
+        "left": 1320,
+        "top": 436,
+        "width": 454,
+        "height": 451
+      }
+    }
+  }
+}

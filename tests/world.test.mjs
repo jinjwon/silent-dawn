@@ -1,0 +1,16 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {createWorld,addPlayer,setInput,act,tick,publicState} from '../public/world.mjs';
+const start=()=>{const w=createWorld();addPlayer(w,'a','wanderer');w.phase='explore';w.scene=null;return w;};
+test('diagonal speed is normalized; stale input stops',()=>{const w=start(),p=w.players[0];const x=p.x,y=p.y;setInput(w,'a',{x:1,y:1});tick(w,.1);assert.ok(Math.hypot(p.x-x,p.y-y)<=12.1);tick(w,1);let px=p.x;tick(w,.1);assert.equal(p.x,px);});
+test('attack cooldown prevents unlimited damage',()=>{const w=start(),p=w.players[0];w.enemies=[{id:1,x:p.x+10,y:p.y,hp:100,maxHp:100,cool:99}];act(w,'a','attack');tick(w,.12);const hp=w.enemies[0].hp;act(w,'a','attack');assert.equal(w.enemies[0].hp,hp);assert.ok(hp<100);});
+test('co-op dialogue waits for both readers',()=>{const w=createWorld();addPlayer(w,'a','wanderer');addPlayer(w,'b','seria');act(w,'a','next');assert.equal(w.line,0);act(w,'b','next');assert.equal(w.line,1);});
+test('rescue needs proximity and no nearby enemy',()=>{const w=start(),p=w.players[0],n=w.villagers[0];act(w,'a','interact');assert.equal(n.saved,false);p.x=n.x;p.y=n.y;w.enemies=[];act(w,'a','interact');assert.equal(n.saved,true);});
+test('two distinct heroes must occupy the seal stones',()=>{const w=start();addPlayer(w,'b','seria');w.phase='seals';w.enemies=[];w.players[0].x=288;w.players[0].y=260;w.players[1].x=288;w.players[1].y=260;tick(w,.1);assert.equal(w.phase,'seals');w.players[1].x=480;w.players[1].y=260;for(let i=0;i<30;i++)tick(w,.1);assert.equal(w.scene,'guardian');});
+test('downed ally can be revived nearby and all down offers retry',()=>{const w=start();addPlayer(w,'b','seria');const [a,b]=w.players;b.hp=0;b.x=a.x+5;b.y=a.y;act(w,'a','interact');assert.ok(b.hp>0);a.hp=0;b.hp=0;tick(w,.1);assert.equal(w.phase,'defeat');act(w,'a','retry');assert.ok(w.players.every(p=>p.hp>0));});
+test('movement cannot leave bounds and untrusted input stays finite',()=>{const w=start();setInput(w,'a',{x:Infinity,y:'bad'});tick(w,.1);assert.ok(Number.isFinite(w.players[0].x));w.players[0].x=29;setInput(w,'a',{x:-1,y:0});tick(w,.1);assert.ok(w.players[0].x>=28);});
+test('dialogue freezes enemy damage and movement',()=>{const w=start();w.scene='intro';const p=w.players[0],x=p.x;setInput(w,'a',{x:1,y:0});tick(w,.1);assert.equal(p.x,x);assert.equal(p.hp,100);});
+test('public snapshot excludes controls and tokens',()=>{const w=start();w.players[0].token='secret';assert.equal(JSON.stringify(publicState(w)).includes('secret'),false);assert.equal(publicState(w).players[0].input,undefined);});
+test('distant enemies stay in their area until a hero approaches',()=>{const w=start();const e=w.enemies.at(-1);const x=e.x,y=e.y;tick(w,.1);assert.equal(e.x,x);assert.equal(e.y,y);});
+test('solo companion can find a route around a village house',()=>{const w=start();const p=w.players[0];p.x=250;p.y=520;const ai=addPlayer(w,'bot','seria',true);ai.x=50;ai.y=520;w.enemies=[];for(let i=0;i<250;i++)tick(w,.05);assert.ok(Math.hypot(p.x-ai.x,p.y-ai.y)<60,`AI stuck at ${ai.x},${ai.y}`);});
+test('ready reader progresses when the other reader disconnects',()=>{const w=createWorld();addPlayer(w,'a','wanderer');const b=addPlayer(w,'b','seria');act(w,'a','next');b.ai=true;b.connected=false;tick(w,.1);assert.equal(w.line,1);tick(w,.1);assert.equal(w.line,1);});

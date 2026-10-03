@@ -1,0 +1,11 @@
+Pretendard Variable: Copyright 2021 Kil Hyung-jin and upstream contributors.
+Official source: https://github.com/orioncactus/pretendard
+Bundled unmodified; SIL Open Font License 1.1, see Pretendard-LICENSE.txt.
+
+DawnSerifKR.woff2: a character-subset of Noto Serif KR, generated for this prototype's Korean UI and story; glyph design unmodified.
+Official source: https://github.com/google/fonts/tree/main/ofl/notoserifkr
+Copyright 2012 Google Inc. All Rights Reserved.
+SIL Open Font License 1.1, see NotoSerifKR-OFL.txt.
+
+No font or artwork is extracted from the referenced commercial games.
+Canvas art and character sprites were authored specifically for Dawn Oath.

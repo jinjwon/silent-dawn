@@ -1,0 +1,5 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import sharp from 'sharp';
+import {readFile} from 'node:fs/promises';
+test('all shipped art files decode, retain transparency, and contain visible pixels',async()=>{const names=['seria-front','seria-back','wanderer-front','wanderer-back','seria-portrait','wanderer-portrait','cottage','pine','oak','chapel','well','market','guardian','shadowbeast','villager-herbalist','villager-elder','wanderer-windup','wanderer-slash','wanderer-heavy','wanderer-dodge','seria-windup','seria-slash','seria-cast','seria-dodge'];for(const name of names){const p=new URL(`../public/assets/art-v2/${name}.png`,import.meta.url);const data=await readFile(p);const {data:pixels,info}=await sharp(data).ensureAlpha().raw().toBuffer({resolveWithObject:true});let solid=0,clear=0;for(let i=3;i<pixels.length;i+=4){if(pixels[i]>200)solid++;if(pixels[i]===0)clear++;}assert.ok(solid>info.width*info.height*.1,`${name} empty`);assert.ok(clear>0,`${name} lost cutout`);assert.ok(data.length<150000,`${name} excessive game payload`);}});
